@@ -1,5 +1,7 @@
 package com.crud.logagames.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -32,6 +34,10 @@ public class Produto {
 
     @NotNull
     private LocalDate dataLancamento;
+
+    @ManyToOne
+    @JsonIgnoreProperties("produto")
+    private Categoria categoria;
 
     public Long getId() {
         return id;
@@ -79,6 +85,14 @@ public class Produto {
 
     public void setDataLancamento(LocalDate dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
 
